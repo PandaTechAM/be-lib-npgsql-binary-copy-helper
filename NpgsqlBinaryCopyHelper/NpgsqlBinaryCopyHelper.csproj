@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PackageId>PandaTech.NpgsqlBinaryCopyHelper</PackageId>
+        <Description>Helps to use Npgsql binary copy for bulk inserts in postgres database.</Description>
+        <PackageIcon>pandatech.png</PackageIcon>
+        <RepositoryUrl>https://github.com/PandaTechAM/be-lib-npgsql-binary-copy-helper</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <Company>PandaTech</Company>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentAssertions" Version="6.11.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="pandatech.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+
+</Project>
