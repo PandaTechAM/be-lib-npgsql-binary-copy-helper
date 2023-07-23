@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using Npgsql;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.Mapping;
 
 namespace NpgsqlBinaryCopyHelper;
 
@@ -116,7 +117,7 @@ public static class CopyHelper
                         if (!genericType.IsEnum) continue;
                         var enumMapping = properties[i].FindTypeMapping();
 
-                        if (enumMapping is not IntTypeMapping) continue;
+                        if (enumMapping is not NpgsqlArrayTypeMapping) continue;
                         var list = (IList)values[i]!;
 
                         var listInt = (from object? item1 in list select (int)item1!).ToList();

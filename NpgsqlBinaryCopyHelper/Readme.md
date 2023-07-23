@@ -1,6 +1,6 @@
 # Pandatech.NpgsqlBinaryCopyHelper
 
-Pandatech.NpgsqlBinaryCopyHelper is a powerful NuGet package that simplifies binary copy operations using Npgsql in .NET
+Hi! Pandatech.NpgsqlBinaryCopyHelper is a powerful NuGet package that simplifies binary copy operations using Npgsql in .NET
 applications. It provides a convenient and strongly typed API to streamline the insertion of data into a PostgreSQL
 database using the binary copy feature.
 

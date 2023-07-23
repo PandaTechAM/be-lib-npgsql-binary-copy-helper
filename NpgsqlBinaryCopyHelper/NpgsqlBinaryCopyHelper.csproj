@@ -7,6 +7,7 @@
         <PackageId>PandaTech.NpgsqlBinaryCopyHelper</PackageId>
         <Description>Helps to use Npgsql binary copy for bulk inserts in postgres database.</Description>
         <PackageIcon>pandatech.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-npgsql-binary-copy-helper</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <Company>PandaTech</Company>
@@ -24,6 +25,10 @@
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
 </Project>
