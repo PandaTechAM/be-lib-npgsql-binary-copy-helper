@@ -6,7 +6,7 @@ on:
 
 env:
   PROJECT_PATH: ./NpgsqlBinaryCopyHelper
-  PACKAGE_OUTPUT_PATH: ${{ github.workspace}}/output
+  PACKAGE_OUTPUT_PATH: ${{ github.workspace}}\output
 
 jobs:
   deploy:
