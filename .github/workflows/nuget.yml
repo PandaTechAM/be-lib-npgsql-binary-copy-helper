@@ -5,8 +5,7 @@ on:
       - main
 
 env:
-  PROJECT_PATH: ./NpgsqlBinaryCopyHelper
-  PACKAGE_OUTPUT_PATH: ${{ github.workspace}}\output
+  PROJECT_PATH: ./NpgsqlBinaryCopyHelper/NpgsqlBinaryCopyHelper.csproj
 
 jobs:
   deploy:
@@ -28,7 +27,7 @@ jobs:
         run: $${{ env.PROJECT_PATH }}
         
       - name: Build
-        run: dotnet pack $${{ env.PROJECT_PATH }} --output $${{ PACKAGE_OUTPUT_PATH }}
+        run: dotnet pack $${{ env.PROJECT_PATH }} --output nupkgs
         
       - name: Publish
-        run: dotnet nuget push ./$${{ PACKAGE_OUTPUT_PATH }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
