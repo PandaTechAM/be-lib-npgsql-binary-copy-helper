@@ -4,9 +4,6 @@ on:
     branches:
       - main
 
-env:
-  PROJECT_PATH: ./NpgsqlBinaryCopyHelper/NpgsqlBinaryCopyHelper.csproj
-
 jobs:
   deploy:
     name: Deploy
@@ -24,10 +21,10 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Build
-        run: $${{ env.PROJECT_PATH }}
-        
+        run: ./NpgsqlBinaryCopyHelper/NpgsqlBinaryCopyHelper.csproj
+
       - name: Pack
-        run: dotnet pack $${{ env.PROJECT_PATH }} --output nupkgs
-        
+        run: dotnet pack ./NpgsqlBinaryCopyHelper/NpgsqlBinaryCopyHelper.csproj --output nupkgs
+
       - name: Publish
         run: dotnet nuget push ./nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
