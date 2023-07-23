@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Collections;
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 
@@ -15,7 +17,7 @@ public static class CopyHelper
     }
 
     public static async Task CopyAsync<T>(this List<T> model, DbContext context,
-        bool insertWithPrimaryKeys = false, bool convertEnumToInt = true)
+        bool insertWithPrimaryKeys = false)
         where T : class
     {
         try
@@ -86,20 +88,40 @@ public static class CopyHelper
             var propertyInfos = properties.Select(x => x.PropertyInfo).ToList();
             var propertyTypes = propertyInfos.Select(x => x!.PropertyType).ToList();
 
+
             foreach (var item in model)
             {
                 var spInLoop = Stopwatch.StartNew();
 
                 var values = propertyInfos.Select(property => property!.GetValue(item)).ToList();
 
-                if (convertEnumToInt)
+                // Converting enum to int if needed.
+                for (var i = 0; i < columnCount; i++)
                 {
-                    for (var i = 0; i < columnCount; i++)
+                    if (propertyTypes[i].IsEnum)
                     {
-                        if (propertyTypes[i].IsEnum)
+                        var enumMapping = properties[i].FindTypeMapping();
+
+                        if (enumMapping is IntTypeMapping)
                         {
                             values[i] = (int)values[i]!;
                         }
+                    }
+
+                    if (!propertyTypes[i].IsGenericType ||
+                        propertyTypes[i].GetGenericTypeDefinition() != typeof(List<>)) continue;
+                    {
+                        var genericType = propertyTypes[i].GetGenericArguments()[0];
+
+                        if (!genericType.IsEnum) continue;
+                        var enumMapping = properties[i].FindTypeMapping();
+
+                        if (enumMapping is not IntTypeMapping) continue;
+                        var list = (IList)values[i]!;
+
+                        var listInt = (from object? item1 in list select (int)item1!).ToList();
+
+                        values[i] = listInt;
                     }
                 }
 
@@ -112,7 +134,7 @@ public static class CopyHelper
                     await writer.WriteAsync(values[i]);
                 }
 
-                _logger?.LogDebug("Item {Item} written successfully in {Milliseconds} ms", item,
+                _logger?.LogDebug("Row number {RowProgress} written successfully in {Milliseconds} ms", rowProgress,
                     spInLoop.ElapsedMilliseconds);
                 rowProgress++;
             }
@@ -125,7 +147,7 @@ public static class CopyHelper
         }
         catch (Exception ex)
         {
-            _logger?.LogError("An error occurred while performing binary copy. Error: {Error}", ex.Message);
+            _logger?.LogError("An error occurred while performing binary copy. Error: {Error}", ex);
             throw;
         }
     }

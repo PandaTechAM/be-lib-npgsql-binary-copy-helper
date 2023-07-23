@@ -10,6 +10,7 @@
         <RepositoryUrl>https://github.com/PandaTechAM/be-lib-npgsql-binary-copy-helper</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <Company>PandaTech</Company>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
