@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  PROJECT_PATH: ./NpgsqlBinaryCopyHelper
+  PROJECT_PATH: ./NpgsqlBinaryCopyHelper/NpgsqlBinaryCopyHelper.csproj
 
 jobs:
   deploy:
@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: $${{ env.PROJECT_PATH }}
         
-      - name: Build
+      - name: Pack
         run: dotnet pack $${{ env.PROJECT_PATH }} --output nupkgs
         
       - name: Publish
