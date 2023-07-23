@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  PROJECT_PATH: ./NpgsqlBinaryCopyHelper/NpgsqlBinaryCopyHelper.csproj
+  PROJECT_PATH: ./NpgsqlBinaryCopyHelper
 
 jobs:
   deploy:
