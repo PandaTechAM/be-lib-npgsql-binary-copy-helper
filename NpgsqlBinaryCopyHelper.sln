@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NpgsqlBinaryCopyHelper", "NpgsqlBinaryCopyHelper\NpgsqlBinaryCopyHelper.csproj", "{7D24C2A7-5088-42AF-9A62-D8AA94934408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NpgsqlBinaryCopyHelperTests", "NpgsqlBinaryCopyHelperTests\NpgsqlBinaryCopyHelperTests.csproj", "{625838B8-EE18-4DF1-A4D8-873EDC8DEDEB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +12,5 @@ Global
 		{7D24C2A7-5088-42AF-9A62-D8AA94934408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D24C2A7-5088-42AF-9A62-D8AA94934408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D24C2A7-5088-42AF-9A62-D8AA94934408}.Release|Any CPU.Build.0 = Release|Any CPU
-		{625838B8-EE18-4DF1-A4D8-873EDC8DEDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{625838B8-EE18-4DF1-A4D8-873EDC8DEDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{625838B8-EE18-4DF1-A4D8-873EDC8DEDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{625838B8-EE18-4DF1-A4D8-873EDC8DEDEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
